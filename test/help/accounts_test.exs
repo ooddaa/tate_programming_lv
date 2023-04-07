@@ -97,7 +97,7 @@ defmodule Help.AccountsTest do
   describe "change_user_registration/2" do
     test "returns a changeset" do
       assert %Ecto.Changeset{} = changeset = Accounts.change_user_registration(%User{})
-      assert changeset.required == [:password, :email]
+      assert changeset.required == [:password, :email, :username]
     end
 
     test "allows fields to be set" do
@@ -186,7 +186,7 @@ defmodule Help.AccountsTest do
         end)
 
       {:ok, token} = Base.url_decode64(token, padding: false)
-      assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha256, token))
+      assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha3_256, token))
       assert user_token.user_id == user.id
       assert user_token.sent_to == user.email
       assert user_token.context == "change:current@example.com"
@@ -374,7 +374,7 @@ defmodule Help.AccountsTest do
         end)
 
       {:ok, token} = Base.url_decode64(token, padding: false)
-      assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha256, token))
+      assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha3_256, token))
       assert user_token.user_id == user.id
       assert user_token.sent_to == user.email
       assert user_token.context == "confirm"
@@ -427,7 +427,7 @@ defmodule Help.AccountsTest do
         end)
 
       {:ok, token} = Base.url_decode64(token, padding: false)
-      assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha256, token))
+      assert user_token = Repo.get_by(UserToken, token: :crypto.hash(:sha3_256, token))
       assert user_token.user_id == user.id
       assert user_token.sent_to == user.email
       assert user_token.context == "reset_password"

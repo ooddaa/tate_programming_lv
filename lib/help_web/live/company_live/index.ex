@@ -15,17 +15,27 @@ defmodule HelpWeb.CompanyLive.Index do
   end
 
   defp apply_action(socket, :index, _params) do
-    case Map.get(socket.assigns, :current_user) do
-      nil ->
-        socket
-        |> assign(:page_title, "Listing Companies")
-        |> assign(:company, nil)
-
-      _user ->
-        socket
-        |> push_patch(to: ~p"/guess")
-    end
+    socket
+    |> assign(:page_title, "Listing Companies")
+    |> assign(:company, nil)
   end
+
+  # @doc """
+  # Excercise - redirect if user is authenticated and logged in
+  # """
+
+  # defp apply_action(socket, :index, _params) do
+  #   case Map.get(socket.assigns, :current_user) do
+  #     nil ->
+  #       socket
+  #       |> assign(:page_title, "Listing Companies")
+  #       |> assign(:company, nil)
+
+  #     _user ->
+  #       socket
+  #       |> push_patch(to: ~p"/guess")
+  #   end
+  # end
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket

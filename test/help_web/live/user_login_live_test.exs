@@ -27,12 +27,20 @@ defmodule HelpWeb.UserLoginLiveTest do
   describe "user login" do
     test "redirects if user login with valid credentials", %{conn: conn} do
       password = "123456789abcd"
-      user = user_fixture(%{password: password})
+      username = "user"
+      user = user_fixture(%{username: username, password: password})
 
       {:ok, lv, _html} = live(conn, ~p"/users/log_in")
 
       form =
-        form(lv, "#login_form", user: %{email: user.email, password: password, remember_me: true})
+        form(lv, "#login_form",
+          user: %{
+            username: user.username,
+            email: user.email,
+            password: password,
+            remember_me: true
+          }
+        )
 
       conn = submit_form(form, conn)
 
@@ -46,7 +54,12 @@ defmodule HelpWeb.UserLoginLiveTest do
 
       form =
         form(lv, "#login_form",
-          user: %{email: "test@email.com", password: "123456", remember_me: true}
+          user: %{
+            username: "user",
+            email: "test@email.com",
+            password: "123456",
+            remember_me: true
+          }
         )
 
       conn = submit_form(form, conn)

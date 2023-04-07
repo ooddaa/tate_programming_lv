@@ -18,17 +18,17 @@ defmodule HelpWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  # scope "/", HelpWeb do
-  #   pipe_through [:browser, :require_authenticated_user]
+  scope "/", HelpWeb do
+    pipe_through [:browser]
 
-  #   live("/", CompanyLive.Index, :index)
-  #   live("/companies", CompanyLive.Index, :index)
-  #   live("/companies/new", CompanyLive.Index, :new)
-  #   live("/companies/:id/edit", CompanyLive.Index, :edit)
+    live("/", CompanyLive.Index, :index)
+    live("/companies", CompanyLive.Index, :index)
+    live("/companies/new", CompanyLive.Index, :new)
+    live("/companies/:id/edit", CompanyLive.Index, :edit)
 
-  #   live("/companies/:id", CompanyLive.Show, :show)
-  #   live("/companies/:id/show/edit", CompanyLive.Show, :edit)
-  # end
+    live("/companies/:id", CompanyLive.Show, :show)
+    live("/companies/:id/show/edit", CompanyLive.Show, :edit)
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", HelpWeb do
@@ -73,10 +73,16 @@ defmodule HelpWeb.Router do
 
     live_session :require_authenticated_user,
       on_mount: [{HelpWeb.UserAuth, :ensure_authenticated}] do
-      live("/", CompanyLive.Index, :index)
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
       live "/guess", WrongLive
+
+      live "/products", ProductLive.Index, :index
+      live "/products/new", ProductLive.Index, :new
+      live "/products/:id/edit", ProductLive.Index, :edit
+
+      live "/products/:id", ProductLive.Show, :show
+      live "/products/:id/show/edit", ProductLive.Show, :edit
     end
   end
 
