@@ -101,4 +101,31 @@ defmodule Help.Catalog do
   def change_product(%Product{} = product, attrs \\ %{}) do
     Product.changeset(product, attrs)
   end
+
+  @doc """
+  Sets a new price for the product.
+
+  ## Examples
+
+      iex> change_unit_price(product)
+      %Ecto.Changeset{data: %Product{}}
+
+  """
+  def change_unit_price(%Product{} = product, new_price \\ nil) do
+    product
+    |> Product.change_unit_price(new_price)
+    |> Repo.update()
+  end
+
+  def increase_unit_price(%Product{} = product, increment \\ nil) do
+    product
+    |> Product.increment_unit_price(increment)
+    |> Repo.update()
+  end
+
+  def decrease_unit_price(%Product{} = product, decrement \\ nil) do
+    product
+    |> Product.decrement_unit_price(decrement)
+    |> Repo.update()
+  end
 end
