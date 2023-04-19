@@ -33,7 +33,9 @@ defmodule HelpWeb.ProductLive.FormComponent do
 
   @impl true
   def update(%{product: product} = assigns, socket) do
+    # IO.inspect(product, label: "product")
     changeset = Catalog.change_product(product)
+    # |> IO.inspect(label: "changeset")
 
     {:ok,
      socket
@@ -42,7 +44,9 @@ defmodule HelpWeb.ProductLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"product" => product_params}, socket) do
+  def handle_event("validate", %{"product" => product_params} = _params, socket) do
+    # IO.inspect(params, label: "params")
+
     changeset =
       socket.assigns.product
       |> Catalog.change_product(product_params)
@@ -86,7 +90,12 @@ defmodule HelpWeb.ProductLive.FormComponent do
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
-    assign(socket, :form, to_form(changeset))
+    # IO.inspect(changeset, label: "changeset")
+
+    form = to_form(changeset)
+    # |> IO.inspect(label: "form")
+
+    assign(socket, :form, form)
   end
 
   defp notify_parent(msg), do: send(self(), {__MODULE__, msg})
