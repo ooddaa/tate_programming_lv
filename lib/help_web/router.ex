@@ -85,6 +85,7 @@ defmodule HelpWeb.Router do
       live "/products/:id/show/edit", ProductLive.Show, :edit
 
       live "/promo", PromoLive, :index
+      live "/card", CardLive, :index
     end
   end
 
