@@ -36,7 +36,7 @@ defmodule HelpWeb.UserConfirmationLive do
         {:noreply,
          socket
          |> put_flash(:info, "User confirmed successfully.")
-         |> redirect(to: ~p"/")}
+         |> redirect(to: ~p"/companies")}
 
       :error ->
         # If there is a current user and the account was already confirmed,

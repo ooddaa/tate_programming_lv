@@ -5,8 +5,8 @@
   Next
 </.button>
 
-<div :if={@card == :simple} class={["bg-white"]}>
-  <div class="flex font-sans">
+<div :if={@card == :simple}>
+  <div class="flex font-sans bg-white">
     <div class="flex-none w-48 relative">
       <img
         src="/images/lol.jpg"
@@ -95,17 +95,16 @@
 </div>
 
 <div :if={@card == :playful}>
-  <%!-- <div class="bg-white"> --%>
-  <div class="flex font-sans">
+  <div class="flex font-sans bg-white">
     <div class="flex-none w-56 relative">
       <img
         src="/images/lol.jpg"
         alt=""
-        class="absolute inset-0 top-[-10px] w-full h-[310px] object-cover rounded-lg"
+        class="absolute w-[224px] h-[312px] -my-2 -ml-2 rounded-lg object-cover"
         loading="lazy"
       />
     </div>
-    <form class="flex-auto p-6 bg-white">
+    <form class="flex-auto p-6">
       <div class="flex flex-wrap">
         <h1 class="flex-auto font-medium text-slate-900">
           Kids Jumpsuit
@@ -187,13 +186,13 @@
   </div>
   <%!-- </div> --%>
 </div>
-<div :if={@card == :elegant} class={["bg-white"]}>
-  <div class="flex font-serif">
+<div :if={@card == :elegant}>
+  <div class="flex font-serif bg-white">
     <div class="flex-none w-52 relative">
       <img
         src="images/lol.jpg"
         alt=""
-        class="absolute inset-0 w-full h-full object-cover rounded-lg"
+        class="absolute inset-0 w-full h-full object-cover"
         loading="lazy"
       />
     </div>
@@ -278,13 +277,13 @@
     </form>
   </div>
 </div>
-<div :if={@card == :brutalist} class={["bg-white"]}>
-  <div class="flex p-6 font-mono">
+<div :if={@card == :brutalist}>
+  <div class="flex p-6 font-mono bg-white">
     <div class="flex-none w-48 mb-10 relative z-10 before:absolute before:top-1 before:left-1 before:w-full before:h-full before:bg-teal-400">
       <img
         src="images/lol.jpg"
         alt=""
-        class="absolute z-10 inset-0 w-full h-full object-cover rounded-lg"
+        class="absolute z-10 inset-0 w-full h-full object-cover"
         loading="lazy"
       />
     </div>

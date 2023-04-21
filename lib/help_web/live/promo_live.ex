@@ -3,6 +3,8 @@ defmodule HelpWeb.PromoLive do
   alias Help.Promo.Recipient
   alias Help.Promo
 
+  IO.puts("PromoLive!")
+
   def mount(_params, _session, socket) do
     {:ok, socket |> assign_recipient() |> assign_changeset() |> assign_form()}
   end
