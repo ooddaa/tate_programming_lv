@@ -3,8 +3,6 @@ defmodule HelpWeb.PromoLive do
   alias Help.Promo.Recipient
   alias Help.Promo
 
-  IO.puts("PromoLive!")
-
   def mount(_params, _session, socket) do
     {:ok, socket |> assign_recipient() |> assign_changeset() |> assign_form()}
   end
@@ -63,18 +61,20 @@ defmodule HelpWeb.PromoLive do
       recipient
       |> Promo.change_recipient(recipient_params)
       |> Map.put(:action, :validate)
+      |> IO.inspect(label: "changeset")
 
     {:noreply, socket |> assign(:form, to_form(changeset))}
   end
 
   def handle_event("save", params, socket) do
-    # IO.inspect(params, label: "save: params")
+    IO.inspect(params, label: "save: params")
     # save: params: %{
     #   "recipient" => %{
     #     "email" => "ooddaa@gmail.com",
     #     "first_name" => "odasdfsdfsdf"
     #   }
     # }
+    :timer.sleep(1000)
     {:noreply, socket}
   end
 end
