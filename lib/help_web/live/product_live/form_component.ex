@@ -32,13 +32,14 @@ defmodule HelpWeb.ProductLive.FormComponent do
           <.button phx-disable-with="Saving...">Save Product</.button>
         </:actions>
       </.simple_form>
-      <%= for image <- @uploads.image.entries do %>
+      <%= for entry <- @uploads.image.entries do %>
         <div class="mt-4">
-          <.live_img_preview entry={image} width={60} />
-          <progress value={image.progress} max={100} />
+          <.live_img_preview entry={entry} width={60} />
+          <progress value={entry.progress} max={100} />
         </div>
-        <%= for error <- upload_errors(@uploads.image, image) do %>
+        <%= for error <- upload_errors(@uploads.image, entry) do %>
           <.error><%= error %></.error>
+          <.button phx-click="cancel" phx-value-ref={entry.ref} phx-target={@myself}>Cancel</.button>
         <% end %>
       <% end %>
     </div>
@@ -67,6 +68,11 @@ defmodule HelpWeb.ProductLive.FormComponent do
   end
 
   @impl true
+  def handle_event("cancel", %{"ref" => ref} = params, socket) do
+    {:noreply, cancel_upload(socket, :image, ref)}
+  end
+
+  @impl true
   def handle_event("validate", %{"product" => product_params} = _params, socket) do
     # IO.inspect(params, label: "params")
 
@@ -78,6 +84,7 @@ defmodule HelpWeb.ProductLive.FormComponent do
     {:noreply, assign_form(socket, changeset)}
   end
 
+  @impl true
   def handle_event("save", %{"product" => product_params}, socket) do
     save_product(socket, socket.assigns.action, product_params)
   end
