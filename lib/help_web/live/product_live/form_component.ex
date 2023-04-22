@@ -204,10 +204,18 @@ defmodule HelpWeb.ProductLive.FormComponent do
     # |> IO.inspect()
     # live_view_upload-1682165049-734575590575-3
     # dest = Path.join("priv/static/images", filename)
-    dest = Path.join("priv/static/images", client_name)
+    dir = "priv/static/images"
+    unless File.exists?(dir), do: File.mkdir_p!(dir)
+
+    dest = Path.join(dir, client_name)
     File.cp!(path, dest)
 
-    {:ok, ~p"/images/#{filename}"}
+    route =
+      dir
+      |> Path.basename()
+      |> Path.join(filename)
+
+    {:ok, ~p"/#{route}"}
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
