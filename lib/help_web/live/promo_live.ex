@@ -61,13 +61,14 @@ defmodule HelpWeb.PromoLive do
       recipient
       |> Promo.change_recipient(recipient_params)
       |> Map.put(:action, :validate)
-      |> IO.inspect(label: "changeset")
+
+    # |> IO.inspect(label: "changeset")
 
     {:noreply, socket |> assign(:form, to_form(changeset))}
   end
 
   def handle_event("save", params, socket) do
-    IO.inspect(params, label: "save: params")
+    # IO.inspect(params, label: "save: params")
     # save: params: %{
     #   "recipient" => %{
     #     "email" => "ooddaa@gmail.com",
