@@ -86,6 +86,7 @@ defmodule HelpWeb.Router do
 
       live "/promo", PromoLive, :index
       live "/card", CardLive, :index
+      live "/search", SearchLive, :index
     end
   end
 

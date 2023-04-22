@@ -1,0 +1,7 @@
+<.simple_form for={@form} id="search-form" phx-change="validate" phx-submit="save">
+  <.input label="Search" type="text" field={@form[:sku]} phx-debounce="blur" />
+  <:actions>
+    <.button :if={@form.source.errors == []} phx-disable-with="Sending...">Search</.button>
+    <.button :if={@form.source.errors != []} disabled>Cannot search</.button>
+  </:actions>
+</.simple_form>
