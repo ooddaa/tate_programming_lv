@@ -134,14 +134,14 @@ defmodule HelpWeb.ProductLive.FormComponent do
     #   "name" => "hehe",
     #   "sku" => "1",
     #   "unit_price" => "1.0",
-    #   "image_path" =>  "/images/image123.png"
+    #   "image_upload" =>  "/images/image123.png"
     # }
     path =
       socket
       |> consume_uploaded_entries(:image, &upload_static_file/2)
       |> List.first()
 
-    Map.put(params, "image_path", path)
+    Map.put(params, "image_upload", path)
     # socket.assigns.uploads |> IO.inspect()
 
     # %{
@@ -210,12 +210,7 @@ defmodule HelpWeb.ProductLive.FormComponent do
     dest = Path.join(dir, client_name)
     File.cp!(path, dest)
 
-    route =
-      dir
-      |> Path.basename()
-      |> Path.join(filename)
-
-    {:ok, ~p"/#{route}"}
+    {:ok, ~p"/images/#{client_name}"}
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
