@@ -17,6 +17,7 @@ defmodule Help.Catalog.Product do
     product
     |> cast(attrs, [:name, :description, :unit_price, :sku, :image_upload])
     |> validate_required([:name, :description, :unit_price, :sku])
+    |> validate_min_price()
     |> unique_constraint(:sku)
   end
 
@@ -43,5 +44,12 @@ defmodule Help.Catalog.Product do
     else
       no_change(product)
     end
+  end
+
+  defp validate_min_price(product) do
+    # https://hexdocs.pm/ecto/3.8.1/Ecto.Changeset.html#validate_change/3
+    validate_change(product, :unit_price, fn :unit_price, price ->
+      if price < 0.0, do: [unit_price: "price cannot be negative"], else: []
+    end)
   end
 end
