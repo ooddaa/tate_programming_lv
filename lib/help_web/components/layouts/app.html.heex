@@ -1,5 +1,5 @@
-<header class="px-4 sm:px-6 lg:px-8">
-  <div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
+<header class={["text-sm text-zinc-500", "py-8 px-4 sm:px-6 lg:px-8"]}>
+  <%!-- <div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
     <div class="flex items-center gap-4">
       <a href="/">
         <img src={~p"/images/logo.svg"} width="36" />
@@ -22,6 +22,20 @@
         Get Started <span aria-hidden="true">&rarr;</span>
       </a>
     </div>
+  </div> --%>
+  <div class={["flex items-center gap-4"]}>
+    <%= if Map.get(assigns, :current_user, false) do %>
+      <b><%= @current_user.email %></b>
+      <.link class={["hover:text-zinc-900"]} href={~p"/products"}>Products</.link>
+      <.link class={["hover:text-zinc-900"]} href={~p"/survey"}>Survey</.link>
+      <.link class={["hover:text-zinc-900"]} href={~p"/users/settings"}>Settings</.link>
+      <.link class={["hover:text-zinc-900"]} href={~p"/users/log_out"} method="delete">
+        Log out
+      </.link>
+    <% else %>
+      <.link class={["hover:text-zinc-900"]} href={~p"/users/register"}>Register</.link>
+      <.link class={["hover:text-zinc-900"]} href={~p"/users/log_in"}>Log_in</.link>
+    <% end %>
   </div>
 </header>
 <main class="px-4 py-20 sm:px-6 lg:px-8">

@@ -1,5 +1,19 @@
 <.flash_group flash={@flash} />
 <div class="left-[40rem] fixed inset-y-0 right-0 z-0 hidden lg:block xl:left-[50rem]">
+  <div class={["flex items-center gap-4"]}>
+    <%= if Map.get(assigns, :current_user, false) do %>
+      <b><%= @current_user.email %></b>
+      <.link class={["hover:text-zinc-900"]} href={~p"/products"}>Products</.link>
+      <.link class={["hover:text-zinc-900"]} href={~p"/survey"}>Survey</.link>
+      <.link class={["hover:text-zinc-900"]} href={~p"/users/settings"}>Settings</.link>
+      <.link class={["hover:text-zinc-900"]} href={~p"/users/log_out"} method="delete">
+        Log out
+      </.link>
+    <% else %>
+      <.link class={["hover:text-zinc-900"]} href={~p"/users/register"}>Register</.link>
+      <.link class={["hover:text-zinc-900"]} href={~p"/users/log_in"}>Log_in</.link>
+    <% end %>
+  </div>
   <svg
     viewBox="0 0 1480 957"
     fill="none"
