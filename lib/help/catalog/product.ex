@@ -1,6 +1,7 @@
 defmodule Help.Catalog.Product do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Help.Survey.Rating
 
   schema "products" do
     field :description, :string
@@ -9,6 +10,7 @@ defmodule Help.Catalog.Product do
     field :unit_price, :float
     field :image_upload, :string
 
+    has_many :ratings, Rating
     timestamps()
   end
 

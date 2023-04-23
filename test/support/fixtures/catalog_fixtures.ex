@@ -7,7 +7,8 @@ defmodule Help.CatalogFixtures do
   @doc """
   Generate a unique product sku.
   """
-  def unique_product_sku, do: System.unique_integer([:positive])
+  # has to be at least 7 digits long
+  def unique_product_sku, do: System.unique_integer([:positive]) + 1_000_000
 
   @doc """
   Generate a product.
