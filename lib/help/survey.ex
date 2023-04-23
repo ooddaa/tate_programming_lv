@@ -8,6 +8,7 @@ defmodule Help.Survey do
 
   alias Help.Survey.Demographic
   alias Help.Survey.Rating
+  alias Help.Accounts.User
 
   @doc """
   Returns the list of demographics.
@@ -101,6 +102,11 @@ defmodule Help.Survey do
   """
   def change_demographic(%Demographic{} = demographic, attrs \\ %{}) do
     Demographic.changeset(demographic, attrs)
+  end
+
+  def get_demographic_by_user(%User{} = user) do
+    Demographic.Query.for_user(user)
+    |> Repo.one()
   end
 
   @doc """
