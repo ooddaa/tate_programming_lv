@@ -463,6 +463,15 @@ defmodule HelpWeb.CoreComponents do
               <div class="block py-4 pr-6">
                 <span class="absolute -inset-y-px right-0 -left-4 group-hover:bg-zinc-50 sm:rounded-l-xl" />
                 <span class={["relative", i == 0 && "font-semibold text-zinc-900"]}>
+                  <%!-- @row_item.(row) becomes available to the
+                <:col> slot under whatever name is given in
+                :let={var_name}
+
+                for example:
+                <:col :let={my_var}>
+                <%= my_var.row_attr %>
+                </:col>
+                 --%>
                   <%= render_slot(col, @row_item.(row)) %>
                 </span>
               </div>
