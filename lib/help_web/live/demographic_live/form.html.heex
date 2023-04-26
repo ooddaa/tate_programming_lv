@@ -1,0 +1,20 @@
+<div>
+  <.simple_form for={@form} id={@id} phx-submit="save" phx-target={@myself}>
+    <.input
+      label="Gender"
+      field={@form[:gender]}
+      type="select"
+      options={["male", "female", "prefer not to say"]}
+    />
+    <.input
+      label="Year of birth"
+      field={@form[:year_of_birth]}
+      type="select"
+      options={Enum.reverse(1900..2005)}
+    />
+    <.input field={@form[:user_id]} type="hidden" />
+    <:actions>
+      <.button phx-disable-with="Saving...">Save</.button>
+    </:actions>
+  </.simple_form>
+</div>

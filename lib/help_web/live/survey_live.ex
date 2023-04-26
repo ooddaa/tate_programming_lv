@@ -10,6 +10,10 @@ defmodule HelpWeb.SurveyLive do
      |> assign_demoraphic()}
   end
 
+  def handle_params(_params, _uri, socket) do
+    {:noreply, socket}
+  end
+
   defp assign_demoraphic(%{assigns: %{current_user: current_user}} = socket) do
     socket
     |> assign(:demographic, Survey.get_demographic_by_user(current_user))

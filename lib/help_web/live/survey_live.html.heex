@@ -1,15 +1,17 @@
 <section>
-  <Component.title heading="Survey" message="Please fill out our survey" />
-  <Component.title heading="Survey2" message="🔥 " />
-  <%!-- <Component.hero content="Survey">Please fill out our survey</Component.hero> --%>
-  <Component.list_item item="item1" />
-  <Component.list items={["item1", "item2", "🔥"]} />
+  <%!-- <Component.title heading="Survey" message="Please fill out our survey" /> --%>
+  <%!-- <Component.title heading="Survey2" message="🔥 " /> --%>
+  <%!-- <Component.list_item item="item1" />
+  <Component.list items={["item1", "item2", "🔥"]} /> --%>
+  <Component.hero content="Survey">Please fill out our survey</Component.hero>
 
   <%= if @demographic do %>
     <DemographicLive.Show.details demographic={@demographic} />
   <% else %>
-    <h2>
-      Coming soon
-    </h2>
+    <.live_component
+      module={HelpWeb.DemographicLive.Form}
+      id="demographic-form"
+      current_user={@current_user}
+    />
   <% end %>
 </section>
