@@ -257,7 +257,7 @@ defmodule HelpWeb.CoreComponents do
 
   attr :rest, :global,
     include: ~w(autocomplete cols disabled form list max maxlength min minlength
-                pattern placeholder readonly required rows size step)
+                pattern placeholder readonly required rows size step rating)
 
   slot :inner_block
 
@@ -291,6 +291,15 @@ defmodule HelpWeb.CoreComponents do
       </label>
       <.error :for={msg <- @errors}><%= msg %></.error>
     </div>
+    """
+  end
+
+  def input(%{type: "rating"} = assigns) do
+    ~H"""
+    <select name={@name} id={@id} class={["border focus:ring-zinc-500"]} multiple={@multiple} {@rest}>
+      <option :if={@prompt} value=""><%= @prompt %></option>
+      <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+    </select>
     """
   end
 
