@@ -42,4 +42,34 @@ defmodule HelpWeb.SurveyLive.Component do
     <%!-- </pre> --%>
     """
   end
+
+  attr :heading, :string, required: true
+  attr :message, :string
+
+  def title(assigns) do
+    ~H"""
+    <h1><%= @heading %></h1>
+    <%= @message %>
+    """
+  end
+
+  attr :item, :string, required: true
+
+  def list_item(assigns) do
+    ~H"""
+    <li><%= @item %></li>
+    """
+  end
+
+  attr :items, :list, required: true
+
+  def list(assigns) do
+    ~H"""
+    <ul>
+      <%= for item <- @items do %>
+        <.list_item item={item} />
+      <% end %>
+    </ul>
+    """
+  end
 end

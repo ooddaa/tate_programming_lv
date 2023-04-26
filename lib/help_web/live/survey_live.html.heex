@@ -1,5 +1,10 @@
 <section>
-  <Component.hero content="Survey">Please fill out our survey</Component.hero>
+  <Component.title heading="Survey" message="Please fill out our survey" />
+  <Component.title heading="Survey2" message="🔥 " />
+  <%!-- <Component.hero content="Survey">Please fill out our survey</Component.hero> --%>
+  <Component.list_item item="item1" />
+  <Component.list items={["item1", "item2", "🔥"]} />
+
   <%= if @demographic do %>
     <DemographicLive.Show.details demographic={@demographic} />
   <% else %>
