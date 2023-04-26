@@ -3,6 +3,11 @@ defmodule HelpWeb.DemographicLive.Form do
   alias Help.Survey
   alias Help.Survey.Demographic
 
+  @moduledoc """
+  @CALLER SurveyLive
+  @PARENT_LV SurveyLive
+  """
+
   def update(assigns, socket) do
     {:ok,
      socket
@@ -41,8 +46,12 @@ defmodule HelpWeb.DemographicLive.Form do
 
   defp save_demographic(socket, params) do
     case Survey.create_demographic(params) do
-      {:ok, _demographic} ->
-        push_navigate(socket, to: ~p"/survey")
+      {:ok, demographic} ->
+        # it is not up to this form to control what's
+        # rendered in SurveyLive!
+        # send parent a message, let him deal with it
+        send(self(), {:created_demographic, demographic})
+        socket
 
       {:error, %Ecto.Changeset{} = changeset} ->
         assign(socket, :changeset, changeset)

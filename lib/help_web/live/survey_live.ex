@@ -18,4 +18,17 @@ defmodule HelpWeb.SurveyLive do
     socket
     |> assign(:demographic, Survey.get_demographic_by_user(current_user))
   end
+
+  def handle_info({:created_demographic, demographic}, socket) do
+    {:noreply, handle_demographic_created(socket, demographic)}
+
+    # we don't need to re-mount LV
+    # {:noreply, push_navigate(socket, to: ~p"/survey")}
+  end
+
+  defp handle_demographic_created(socket, demographic) do
+    socket
+    |> put_flash(:info, "Demographic created successfully")
+    |> assign(:demographic, demographic)
+  end
 end
