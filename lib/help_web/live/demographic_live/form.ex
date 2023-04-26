@@ -32,31 +32,20 @@ defmodule HelpWeb.DemographicLive.Form do
     # unsigned_params: %{
     #   "demographic" => %{
     #     "gender" => "male",
-    #     "user_id" => "2",
+    #     "user_id" => "2", # because we had a hidden field
     #     "year_of_birth" => "2005"
     #   }
     # }
+    {:noreply, save_demographic(socket, demographic)}
+  end
 
-    case Survey.create_demographic(demographic) do
-      {:ok, _} ->
-        {:noreply, push_navigate(socket, to: ~p"/survey")}
+  defp save_demographic(socket, params) do
+    case Survey.create_demographic(params) do
+      {:ok, _demographic} ->
+        push_navigate(socket, to: ~p"/survey")
 
-      _ ->
-        {:noreply, socket}
+      {:error, %Ecto.Changeset{} = changeset} ->
+        assign(socket, :changeset, changeset)
     end
-
-    #     {:ok,
-    #  %Help.Survey.Demographic{
-    #    __meta__: #Ecto.Schema.Metadata<:loaded, "demographics">,
-    #    id: 3,
-    #    gender: "male",
-    #    year_of_birth: 2005,
-    #    user_id: 2,
-    #    user: #Ecto.Association.NotLoaded<association :user is not loaded>,
-    #    inserted_at: ~N[2023-04-26 12:40:16],
-    #    updated_at: ~N[2023-04-26 12:40:16]
-    #  }}
-    # {:noreply, socket}
-    # {:noreply, push_patch(socket, to: ~p"/survey")}
   end
 end
