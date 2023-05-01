@@ -1,5 +1,5 @@
 <div>
-  <.form for={@form} phx-submit="save" phx-target={@myself} id={@id}>
+  <.form for={@form} phx-change="change" phx-submit="save" phx-target={@myself} id={@id}>
     <.input field={@form[:user_id]} type="hidden" />
     <.input field={@form[:product_id]} type="hidden" />
     <.input
@@ -14,6 +14,6 @@
         "​​★": 1
       ]}
     />
-    <.button phx-disable-with="Saving...">Save</.button>
+    <%!-- <.button phx-disable-with="Saving...">Save</.button> --%>
   </.form>
 </div>
