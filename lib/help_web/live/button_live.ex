@@ -2,6 +2,7 @@ defmodule HelpWeb.ButtonLive do
   use HelpWeb, :live_view
 
   alias HelpWeb.ButtonLive.Toggler
+  alias HelpWeb.ButtonLive.Component
 
   def(mount(_params, _session, socket)) do
     {:ok, socket}
@@ -9,7 +10,8 @@ defmodule HelpWeb.ButtonLive do
 
   def render(assigns) do
     ~H"""
-    <.live_component module={Toggler} id="toggler" />
+    <%!-- <.live_component module={Toggler} id="toggler" /> --%>
+    <Component.toggler />
     """
   end
 end
