@@ -17,6 +17,13 @@ defmodule HelpWeb.DemographicLive.Form do
      |> assign_form()}
   end
 
+  @spec assign_demographic(%{
+          :assigns => %{
+            :current_user => atom | %{:id => any, optional(any) => any},
+            optional(any) => any
+          },
+          optional(any) => any
+        }) :: map
   def assign_demographic(%{assigns: %{current_user: user}} = socket) do
     socket
     |> assign(:demographic, %Demographic{user_id: user.id})

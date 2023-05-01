@@ -5,6 +5,7 @@ defmodule Help.Repo.Migrations.CreateDemographics do
     create table(:demographics) do
       add :gender, :string
       add :year_of_birth, :integer
+      add :education, :string
       add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()
