@@ -26,4 +26,29 @@ defmodule HelpWeb.RatingLive.Form do
     socket
     |> assign(:form, to_form(changeset))
   end
+
+  def handle_event("save", %{"rating" => rating_params} = _unsigned_params, socket) do
+    # form is named after "schema" singular name
+    # "ratings" -> rating
+    # "lols" -> lol
+    # IO.inspect(rating_params, label: "rating_params")
+    # rating_params: %{"product_id" => "1", "stars" => "5", "user_id" => "2"}
+    {:noreply, save_rating(socket, rating_params)}
+  end
+
+  def save_rating(%{assigns: %{product_index: product_index, product: product}} = socket, params) do
+    case Survey.create_rating(params) do
+      {:ok, rating} ->
+        # send parent all info so it can
+        # re-render the view
+        product = %{product | ratings: [rating]}
+        send(self(), {:created_rating, product, product_index})
+        socket
+
+      {:error, changeset} ->
+        socket
+        |> assign(:changeset, changeset)
+        |> assign(:form, to_form(changeset))
+    end
+  end
 end

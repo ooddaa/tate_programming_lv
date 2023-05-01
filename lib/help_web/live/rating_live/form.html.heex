@@ -1,5 +1,5 @@
 <div>
-  <.form for={@form} phx-submit="save" phx-target={@myself} if={@id}>
+  <.form for={@form} phx-submit="save" phx-target={@myself} id={@id}>
     <.input field={@form[:user_id]} type="hidden" />
     <.input field={@form[:product_id]} type="hidden" />
     <.input

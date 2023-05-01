@@ -2,6 +2,7 @@ defmodule HelpWeb.RatingLive.Index do
   use Phoenix.Component
   use Phoenix.HTML
   alias HelpWeb.RatingLive
+  alias HelpWeb.RatingLive.Show
 
   attr :products, :list, required: true
   attr :current_user, :any, required: true
@@ -48,8 +49,9 @@ defmodule HelpWeb.RatingLive.Index do
     <% else %>
       <.live_component
         module={HelpWeb.RatingLive.Form}
-        id="rating-form"
+        id={"rating-form-#{@product.id}"}
         current_user={@current_user}
+        product_index={@index}
         product={@product}
       />
       <%!-- <div>

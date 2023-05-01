@@ -1,11 +1,13 @@
 defmodule HelpWeb.SurveyLive do
+  @moduledoc """
+  Manages lists of products and ratings
+  """
   use HelpWeb, :live_view
   alias __MODULE__.Component
   alias Help.Survey
   alias Help.Catalog
   alias HelpWeb.DemographicLive
   alias HelpWeb.RatingLive
-  alias HelpWeb.RatingLive.Show
 
   def mount(_params, _session, socket) do
     {:ok,
@@ -40,9 +42,23 @@ defmodule HelpWeb.SurveyLive do
     # {:noreply, push_navigate(socket, to: ~p"/survey")}
   end
 
+  def handle_info({:created_rating, updated_product, product_index}, socket) do
+    {:noreply, handle_rating_created(socket, updated_product, product_index)}
+  end
+
   defp handle_demographic_created(socket, demographic) do
     socket
     |> put_flash(:info, "Demographic created successfully")
     |> assign(:demographic, demographic)
+  end
+
+  defp handle_rating_created(
+         %{assigns: %{products: products}} = socket,
+         updated_product,
+         product_index
+       ) do
+    socket
+    |> put_flash(:info, "Rating created successfully")
+    |> assign(:products, List.replace_at(products, product_index, updated_product))
   end
 end
