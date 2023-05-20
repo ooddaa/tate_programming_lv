@@ -36,7 +36,7 @@ defmodule HelpWeb.RatingLive.Form do
     {:noreply, save_rating(socket, rating_params)}
   end
 
-  def handle_event("change", %{"rating" => rating_params} = unsigned_params, socket) do
+  def handle_event("change", %{"rating" => rating_params} = _params, socket) do
     # IO.inspect(rating_params, label: "rating_params")
     # rating_params: %{"product_id" => "9", "stars" => "4", "user_id" => "2"}
     {:noreply, save_rating(socket, rating_params)}

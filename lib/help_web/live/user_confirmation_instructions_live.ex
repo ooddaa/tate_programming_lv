@@ -43,9 +43,12 @@ defmodule HelpWeb.UserConfirmationInstructionsLive do
     info =
       "If your email is in our system and it has not been confirmed yet, you will receive an email with instructions shortly."
 
-    {:noreply,
-     socket
-     |> put_flash(:info, info)
-     |> redirect(to: ~p"/")}
+    {
+      :noreply,
+      socket
+      |> put_flash(:info, info)
+      |> redirect(to: ~p"/users/log_in")
+      #  |> redirect(to: ~p"/")
+    }
   end
 end

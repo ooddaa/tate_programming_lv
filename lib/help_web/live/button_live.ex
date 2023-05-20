@@ -1,7 +1,7 @@
 defmodule HelpWeb.ButtonLive do
   use HelpWeb, :live_view
 
-  alias HelpWeb.ButtonLive.Toggler
+  # alias HelpWeb.ButtonLive.Toggler
   alias HelpWeb.ButtonLive.Component
 
   def(mount(_params, _session, socket)) do

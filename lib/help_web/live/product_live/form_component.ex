@@ -68,7 +68,7 @@ defmodule HelpWeb.ProductLive.FormComponent do
   end
 
   @impl true
-  def handle_event("cancel", %{"ref" => ref} = params, socket) do
+  def handle_event("cancel", %{"ref" => ref} = _params, socket) do
     {:noreply, cancel_upload(socket, :image, ref)}
   end
 
@@ -207,7 +207,7 @@ defmodule HelpWeb.ProductLive.FormComponent do
     #   client_type: "image/jpeg",
     #   client_last_modified: 1681313221910
     # }
-    filename = Path.basename(path)
+    # filename = Path.basename(path)
     # |> IO.inspect()
     # live_view_upload-1682165049-734575590575-3
     # dest = Path.join("priv/static/images", filename)

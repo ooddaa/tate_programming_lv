@@ -45,6 +45,7 @@ defmodule HelpWeb.UserForgotPasswordLive do
     {:noreply,
      socket
      |> put_flash(:info, info)
+     |> redirect(to: ~p"/users/log_in")
      |> redirect(to: ~p"/")}
   end
 end

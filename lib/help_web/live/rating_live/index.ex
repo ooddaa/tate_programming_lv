@@ -1,7 +1,7 @@
 defmodule HelpWeb.RatingLive.Index do
   use Phoenix.Component
   use Phoenix.HTML
-  alias HelpWeb.RatingLive
+  # alias HelpWeb.RatingLive
   alias HelpWeb.RatingLive.Show
 
   attr :products, :list, required: true

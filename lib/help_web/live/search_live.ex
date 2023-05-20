@@ -29,7 +29,7 @@ defmodule HelpWeb.SearchLive do
 
   def handle_event(
         "validate",
-        %{"search_sku" => search_sku} = params,
+        %{"search_sku" => search_sku} = _params,
         %{assigns: %{search: search}} = socket
       ) do
     # IO.inspect(params, label: "validate params")

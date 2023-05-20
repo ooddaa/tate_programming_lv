@@ -22,6 +22,11 @@ defmodule HelpWeb.CardLive do
     {:noreply, socket |> assign(:card, next_card)}
   end
 
+  def handle_event("prev_card", _unsigned_params, %{assigns: %{card: card}} = socket) do
+    # implement fsm
+    {:noreply, socket |> assign(:card, get_prev(card, @cards))}
+  end
+
   def get_next(card, cards) do
     index =
       cards
@@ -29,11 +34,6 @@ defmodule HelpWeb.CardLive do
 
     cards
     |> Enum.at(Integer.mod(index + 1, length(@cards)))
-  end
-
-  def handle_event("prev_card", _unsigned_params, %{assigns: %{card: card}} = socket) do
-    # implement fsm
-    {:noreply, socket |> assign(:card, get_prev(card, @cards))}
   end
 
   def get_prev(card, cards) do

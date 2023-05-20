@@ -44,7 +44,7 @@ defmodule HelpWeb.PromoLive do
 
   def handle_event(
         "validate",
-        %{"recipient" => recipient_params} = params,
+        %{"recipient" => recipient_params} = _params,
         %{assigns: %{recipient: recipient}} = socket
       ) do
     # IO.inspect(params, label: "validate: params")
@@ -67,7 +67,7 @@ defmodule HelpWeb.PromoLive do
     {:noreply, socket |> assign(:form, to_form(changeset))}
   end
 
-  def handle_event("save", params, socket) do
+  def handle_event("save", _params, socket) do
     # IO.inspect(params, label: "save: params")
     # save: params: %{
     #   "recipient" => %{

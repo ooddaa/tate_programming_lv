@@ -1,7 +1,8 @@
 defmodule Help.Survey.Demographic do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Help.Survey.Demographic
+  alias Help.Accounts.User
+  # alias Help.Survey.Demographic
 
   schema "demographics" do
     field(:gender, :string)

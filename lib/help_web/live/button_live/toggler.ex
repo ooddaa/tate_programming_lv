@@ -6,16 +6,16 @@ defmodule HelpWeb.ButtonLive.Toggler do
   def render(assigns) do
     ~H"""
     <div>
-    <.button phx-click="toggle" phx-value-open={to_string(@open?)} phx-target={@myself}>
-    <%= "open?: #{@open?}" %>
-    </.button>
-    <div :if={@open?}> Div to hide </div>
-    <%!-- <div style={if @open?, do: "", else: "display: none"}> Div to hide </div> --%>
+      <.button phx-click="toggle" phx-value-open={to_string(@open?)} phx-target={@myself}>
+        <%= "open?: #{@open?}" %>
+      </.button>
+      <div :if={@open?}>Div to hide</div>
+      <%!-- <div style={if @open?, do: "", else: "display: none"}> Div to hide </div> --%>
     </div>
     """
   end
 
-  def handle_event("toggle", %{"open" => open} = unsigned_params, socket) do
+  def handle_event("toggle", %{"open" => open} = _params, socket) do
     {:noreply, assign(socket, :open?, if(open == "true", do: false, else: true))}
   end
 end

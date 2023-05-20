@@ -43,7 +43,7 @@ defmodule Help.Accounts.User do
     |> validate_password(opts)
   end
 
-  defp validate_username(changeset, opts) do
+  defp validate_username(changeset, _opts) do
     changeset
     |> validate_required([:username])
     |> validate_length(:username, min: 1, max: 160)
