@@ -133,4 +133,9 @@ defmodule Help.Catalog do
     |> Product.decrement_unit_price(decrement)
     |> Repo.update()
   end
+
+  def product_with_average_ratings do
+    Product.Query.with_average_ratings()
+    |> Repo.all()
+  end
 end
