@@ -23,7 +23,7 @@ defmodule HelpWeb.Admin.SurveyResultsLive do
   @spec assign_products_with_average_ratings(map) :: map
   defp assign_products_with_average_ratings(socket) do
     socket
-    |> assign(:products_with_average_ratings, Catalog.product_with_average_ratings())
+    # |> assign(:products_with_average_ratings, Catalog.product_with_average_ratings())
   end
 
   defp assign_dataset(
