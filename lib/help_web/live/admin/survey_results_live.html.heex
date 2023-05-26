@@ -1,4 +1,33 @@
 <section class="ml-8">
   <h2 class="font-light text-2xl">Survey Results</h2>
+  <div id="survey-results-component">
+    <div class="container">
+      <.simple_form for={%{}} phx-change="gender_filter" phx-target={@myself} id="gender-form">
+        <.input
+          label="By gender:"
+          type="select"
+          name="gender_filter"
+          id="gender_filter"
+          options={~w(all male female)}
+          value="male"
+        />
+      </.simple_form>
+      <.simple_form
+        for={%{}}
+        phx-change="age_group_filter"
+        phx-target={@myself}
+        id="age-group-form"
+      >
+        <.input
+          label="By age:"
+          type="select"
+          name="age_group_filter_name"
+          id="age_group_filter"
+          options={["all", "18 and under", "18 to 25", "25 to 35", "35 and up"]}
+          value="all"
+        />
+      </.simple_form>
+    </div>
+  </div>
   <div id="survey-results-chart"><%= @chart_svg %></div>
 </section>

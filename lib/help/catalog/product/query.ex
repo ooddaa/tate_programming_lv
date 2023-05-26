@@ -90,4 +90,9 @@ defmodule Help.Catalog.Product.Query do
   end
 
   defp apply_age_group_filter(query, _), do: query
+
+  def with_zero_ratings(query \\ base()) do
+    query
+    |> select([p], {p.name, 0})
+  end
 end
