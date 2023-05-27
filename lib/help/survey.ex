@@ -109,6 +109,12 @@ defmodule Help.Survey do
     |> Repo.one()
   end
 
+  def get_demographic_by_age_group(age_group) do
+    # Survey.list_demographics |> Enum.map(&Map.get(&1, :year_of_birth)) |> Enum.filter(&(&1 < 2005 and &1 >= 1998)) |> length
+    Demographic.Query.filter_by_age_group(age_group)
+    |> Repo.all()
+  end
+
   @doc """
   Returns the list of ratings.
 

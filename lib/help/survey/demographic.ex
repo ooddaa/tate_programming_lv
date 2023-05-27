@@ -20,7 +20,7 @@ defmodule Help.Survey.Demographic do
     |> cast(attrs, [:gender, :year_of_birth, :education, :user_id])
     |> validate_required([:gender, :year_of_birth, :user_id])
     |> validate_inclusion(:gender, ["male", "female", "prefer not to say"])
-    |> validate_inclusion(:year_of_birth, 1900..2005)
+    |> validate_inclusion(:year_of_birth, 1900..2023)
     |> validate_inclusion(:education, [
       "high school",
       "bachelor's degree",

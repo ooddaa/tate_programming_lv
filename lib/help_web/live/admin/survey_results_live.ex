@@ -143,8 +143,6 @@ defmodule HelpWeb.Admin.SurveyResultsLive do
   end
 
   def handle_event("age_group_filter", %{"age_group_filter_name" => age_group_filter}, socket) do
-    IO.inspect(age_group_filter, label: "age_group_filter")
-
     {
       :noreply,
       socket

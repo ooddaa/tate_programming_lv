@@ -53,11 +53,11 @@ defmodule Help.Catalog.Product.Query do
     |> apply_age_group_filter(filter)
   end
 
-  defp apply_age_group_filter(query, "18 and under") do
+  defp apply_age_group_filter(query, "under 18") do
     birth_year = DateTime.utc_now().year - 18
 
     query
-    |> where([p, r, u, d], d.year_of_birth >= ^birth_year)
+    |> where([p, r, u, d], d.year_of_birth > ^birth_year)
   end
 
   defp apply_age_group_filter(query, "18 to 25") do
@@ -67,7 +67,7 @@ defmodule Help.Catalog.Product.Query do
     query
     |> where(
       [p, r, u, d],
-      d.year_of_birth >= ^birth_year_max and d.year_of_birth <= ^birth_year_min
+      d.year_of_birth <= ^birth_year_max and d.year_of_birth > ^birth_year_min
     )
   end
 
@@ -78,15 +78,15 @@ defmodule Help.Catalog.Product.Query do
     query
     |> where(
       [p, r, u, d],
-      d.year_of_birth >= ^birth_year_max and d.year_of_birth <= ^birth_year_min
+      d.year_of_birth <= ^birth_year_max and d.year_of_birth > ^birth_year_min
     )
   end
 
-  defp apply_age_group_filter(query, "35 and up") do
+  defp apply_age_group_filter(query, "over 35") do
     birth_year = DateTime.utc_now().year - 35
 
     query
-    |> where([p, r, u, d], d.year_of_birth <= ^birth_year)
+    |> where([p, r, u, d], d.year_of_birth < ^birth_year)
   end
 
   defp apply_age_group_filter(query, _), do: query

@@ -134,6 +134,7 @@ defmodule Help.Catalog do
     |> Repo.update()
   end
 
+  @spec product_with_average_ratings(%{:age_group_filter => any, optional(any) => any}) :: any
   def product_with_average_ratings(%{age_group_filter: age_group_filter}) do
     Product.Query.with_average_ratings()
     |> Product.Query.join_users()
