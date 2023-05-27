@@ -9,7 +9,7 @@
           name="gender_filter"
           id="gender_filter"
           options={~w(all male female)}
-          value="male"
+          value={@gender_filter}
         />
       </.simple_form>
       <.simple_form
@@ -24,7 +24,7 @@
           name="age_group_filter_name"
           id="age_group_filter"
           options={["all", "under 18", "18 to 25", "25 to 35", "over 35"]}
-          value="all"
+          value={@age_group_filter}
         />
       </.simple_form>
     </div>

@@ -37,6 +37,8 @@ defmodule Help.Catalog.Product.Query do
   end
 
   def join_users(query \\ base()) do
+    # products |> join_ratings |> join_users |> demographics
+    # [p, r, u, d]
     query
     |> join(:left, [p, r], u in User, on: r.user_id == u.id)
 
@@ -95,4 +97,21 @@ defmodule Help.Catalog.Product.Query do
     query
     |> select([p], {p.name, 0})
   end
+
+  def filter_by_gender(query \\ base(), filter) do
+    query
+    |> apply_gender_filter(filter)
+  end
+
+  defp apply_gender_filter(query, "male") do
+    query
+    |> where([_, _, _, d], d.gender == "male")
+  end
+
+  defp apply_gender_filter(query, "female") do
+    query
+    |> where([_, _, _, d], d.gender == "female")
+  end
+
+  defp apply_gender_filter(query, _), do: query
 end
