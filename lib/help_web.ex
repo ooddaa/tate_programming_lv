@@ -104,6 +104,18 @@ defmodule HelpWeb do
     end
   end
 
+  def chart_helpers do
+    quote do
+      import HelpWeb.BarChart
+    end
+  end
+
+  def chart_live do
+    quote do
+      unquote(chart_helpers())
+    end
+  end
+
   @doc """
   When used, dispatch to the appropriate controller/view/etc.
   """
