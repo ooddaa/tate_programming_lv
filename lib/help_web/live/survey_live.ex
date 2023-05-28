@@ -6,8 +6,9 @@ defmodule HelpWeb.SurveyLive do
   alias __MODULE__.Component
   alias Help.Survey
   alias Help.Catalog
-  alias HelpWeb.DemographicLive
-  alias HelpWeb.RatingLive
+  alias HelpWeb.{DemographicLive, RatingLive, Endpoint}
+
+  @survey_results_topic "survey-results"
 
   def mount(_params, _session, socket) do
     {:ok,
@@ -57,6 +58,8 @@ defmodule HelpWeb.SurveyLive do
          updated_product,
          product_index
        ) do
+    Endpoint.broadcast(@survey_results_topic, "rating_created", %{})
+
     socket
     |> put_flash(:info, "Rating created successfully")
     |> assign(:products, List.replace_at(products, product_index, updated_product))

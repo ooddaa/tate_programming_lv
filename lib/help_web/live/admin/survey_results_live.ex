@@ -22,9 +22,17 @@ defmodule HelpWeb.Admin.SurveyResultsLive do
     }
   end
 
+  defp assign_gender_filter(%{assigns: %{gender_filter: gender_filter}} = socket) do
+    socket
+  end
+
   defp assign_gender_filter(%{assigns: assigns} = socket, filter \\ "all") do
     socket
     |> assign(:gender_filter, filter)
+  end
+
+  defp assign_age_group_filter(%{assigns: %{age_group_filter: age_group_filter}} = socket) do
+    socket
   end
 
   defp assign_age_group_filter(%{assigns: assigns} = socket, filter \\ "all") do
@@ -79,7 +87,7 @@ defmodule HelpWeb.Admin.SurveyResultsLive do
 
   defp assign_chart_svg(%{assigns: %{chart: chart}} = socket) do
     socket
-    |> assign(:chart_svg, render_bar_chart(chart, title, subtitle, x_axis, y_axis))
+    |> assign(:chart_svg, render_bar_chart(chart, title(), subtitle(), x_axis(), y_axis()))
   end
 
   defp title, do: "Product Ratings"
