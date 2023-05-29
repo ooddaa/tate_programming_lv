@@ -17,7 +17,9 @@ defmodule HelpWeb.SurveyLive do
      |> assign_products()}
   end
 
-  def handle_params(_params, _uri, socket) do
+  def handle_params(_params, _uri, %{assigns: %{current_user: current_user}} = socket) do
+    IO.inspect("😵‍💫 user is doing the survey, gonna track")
+    maybe_track_current_user(socket)
     {:noreply, socket}
   end
 
@@ -64,4 +66,12 @@ defmodule HelpWeb.SurveyLive do
     |> put_flash(:info, "Rating created successfully")
     |> assign(:products, List.replace_at(products, product_index, updated_product))
   end
+
+  defp maybe_track_current_user(%{assigns: %{current_user: current_user}} = socket) do
+    if connected?(socket) do
+      HelpWeb.Presence.track_user(self(), current_user, current_user.username)
+    end
+  end
+
+  defp maybe_track_user(_, _), do: nil
 end

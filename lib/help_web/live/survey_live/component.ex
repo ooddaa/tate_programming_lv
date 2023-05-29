@@ -5,28 +5,6 @@ defmodule HelpWeb.SurveyLive.Component do
   slot :inner_block, required: true
 
   def hero(assigns) do
-    # IO.inspect(assigns, label: "assigns")
-    # assigns: %{
-    #   __changed__: nil,
-    #   __given__: %{
-    #     __changed__: nil,
-    #     content: "Survey",
-    #     inner_block: [
-    #       %{
-    #         __slot__: :inner_block,
-    #         inner_block: #Function<1.76646508/2 in HelpWeb.SurveyLive.render/1>
-    #       }
-    #     ]
-    #   },
-    #   content: "Survey",
-    #   inner_block: [
-    #     %{
-    #       __slot__: :inner_block,
-    #       inner_block: #Function<1.76646508/2 in HelpWeb.SurveyLive.render/1>
-    #     }
-    #   ]
-    # }
-
     ~H"""
     <h1 class="font-heavy text-3xl">
       <%= @content %>

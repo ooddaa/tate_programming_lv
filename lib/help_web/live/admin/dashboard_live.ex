@@ -4,11 +4,13 @@ defmodule HelpWeb.Admin.DashboardLive do
   alias HelpWeb.{Endpoint}
   @survey_results_topic "survey_results"
   @user_activity_topic "user_activity"
+  @survey_takers_topic "survey_takers_activity"
 
   def mount(_params, _session, socket) do
     if connected?(socket) do
       Endpoint.subscribe(@survey_results_topic)
       Endpoint.subscribe(@user_activity_topic)
+      Endpoint.subscribe(@survey_takers_topic)
     end
 
     {:ok,
