@@ -16,10 +16,11 @@ defmodule Help.Application do
       {Phoenix.PubSub, name: Help.PubSub},
       # Start Finch
       {Finch, name: Help.Finch},
+      HelpWeb.Presence,
       # Start the Endpoint (http/https)
       HelpWeb.Endpoint
       # Start a worker by calling: Help.Worker.start_link(arg)
-      # {Help.Worker, arg}
+      # {Help.Worker, arg},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

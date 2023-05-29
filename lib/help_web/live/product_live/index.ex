@@ -12,36 +12,7 @@ defmodule HelpWeb.ProductLive.Index do
       socket
       |> stream(:products, Catalog.list_products())
       |> assign(:greeting, "Welcome to Mars")
-      #  |> IO.inspect()
     }
-
-    # assigns: %{
-    #   __changed__: %{current_user: true, session_id: true, streams: true},
-    #   current_user: #Help.Accounts.User<
-    #     __meta__: #Ecto.Schema.Metadata<:loaded, "users">,
-    #     id: 1,
-    #     username: "oda",
-    #     email: "ooddaa@gmail.com",
-    #     confirmed_at: nil,
-    #     inserted_at: ~N[2023-04-17 14:47:13],
-    #     updated_at: ~N[2023-04-17 14:47:13],
-    #     ...
-    #   >,
-    #   flash: %{"info" => "Account created successfully!"},
-    #   live_action: :index,
-    #   session_id: "users_sessions:q7oKjYppI0kW50C_67MIWlRhBfW9HvR0fJoqCQ4wwXE=",
-    #
-    #
-    #   streams: %{
-    #     __changed__: MapSet.new([:products]),
-    #     products: %Phoenix.LiveView.LiveStream{
-    #       name: :products,
-    #       dom_id: #Function<3.113057034/1 in Phoenix.LiveView.LiveStream.new/3>,
-    #       inserts: [],
-    #       deletes: []
-    #     }
-    #   }
-    # },
   end
 
   @impl true
