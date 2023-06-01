@@ -22,33 +22,33 @@ defmodule HelpWeb.Admin.SurveyResultsLive do
     }
   end
 
-  defp assign_gender_filter(%{assigns: %{gender_filter: gender_filter}} = socket) do
+  def assign_gender_filter(%{assigns: %{gender_filter: gender_filter}} = socket) do
     socket
   end
 
-  defp assign_gender_filter(%{assigns: assigns} = socket, filter \\ "all") do
+  def assign_gender_filter(%{assigns: assigns} = socket, filter \\ "all") do
     socket
     |> assign(:gender_filter, filter)
   end
 
-  defp assign_age_group_filter(%{assigns: %{age_group_filter: age_group_filter}} = socket) do
+  def assign_age_group_filter(%{assigns: %{age_group_filter: age_group_filter}} = socket) do
     socket
   end
 
-  defp assign_age_group_filter(%{assigns: assigns} = socket, filter \\ "all") do
+  def assign_age_group_filter(%{assigns: assigns} = socket, filter \\ "all") do
     socket
     |> assign(:age_group_filter, filter)
   end
 
   @spec assign_products_with_average_ratings(map) :: map
-  defp assign_products_with_average_ratings(
-         %{
-           assigns: %{
-             age_group_filter: age_group_filter,
-             gender_filter: gender_filter
-           }
-         } = socket
-       ) do
+  def assign_products_with_average_ratings(
+        %{
+          assigns: %{
+            age_group_filter: age_group_filter,
+            gender_filter: gender_filter
+          }
+        } = socket
+      ) do
     socket
     |> assign(
       :products_with_average_ratings,
