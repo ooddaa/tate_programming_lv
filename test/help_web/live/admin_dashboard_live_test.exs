@@ -17,10 +17,15 @@ defmodule HelpWeb.AdminDashboardLiveTest do
     password: "usernameusername",
     email: "email@email.com"
   }
-  @create_user_attrs2 %{
+  @create_user2_attrs %{
     username: "username2",
     password: "usernameusername2",
     email: "email2@email.com"
+  }
+  @create_user3_attrs %{
+    username: "username3",
+    password: "usernameusername3",
+    email: "email3@email.com"
   }
   @create_demographic_under_18 %{
     gender: "female",
@@ -91,7 +96,7 @@ defmodule HelpWeb.AdminDashboardLiveTest do
     setup %{user: user, product: product} = socket do
       create_demographic(user)
       create_rating(2, user, product)
-      user2 = user_fixture(@create_user_attrs2)
+      user2 = user_fixture(@create_user2_attrs)
       demographic_fixture(user2, @create_demographic_over_18)
       create_rating(3, user2, product)
       [user2: user2]
@@ -105,6 +110,26 @@ defmodule HelpWeb.AdminDashboardLiveTest do
              # |> open_browser()
              |> element("#age-group-form")
              |> render_change(params) =~ "<title>2.00</title>"
+    end
+
+    test "it updates to display newly created ratings", %{conn: conn, product: product} do
+      {:ok, live, html} = live(conn, "/admin-dashboard")
+      assert html =~ "<title>2.50</title>"
+      user3 = user_fixture(@create_user3_attrs)
+      demographic_fixture(user3, @create_demographic_over_18)
+      create_rating(3, user3, product)
+      #       IO.inspect(live, label: "live")
+      #       live: #Phoenix.LiveViewTest.View<
+      #   id: "phx-F2UxbpzEZxZoiQri",
+      #   module: HelpWeb.Admin.DashboardLive,
+      #   pid: #PID<0.1543.0>,
+      #   endpoint: HelpWeb.Endpoint,
+      #   ...
+      # >
+      send(live.pid, %{event: "rating_created"})
+      :timer.sleep(2)
+
+      assert render(live) =~ "<title>2.67</title>"
     end
   end
 end
