@@ -85,7 +85,7 @@ defmodule HelpWeb.Router do
       live("/search", SearchLive, :index)
       live("/survey", SurveyLive, :index)
       live("/button", ButtonLive, :index)
-      live("/admin/dashboard", Admin.DashboardLive)
+      live("/admin-dashboard", Admin.DashboardLive)
     end
   end
 
