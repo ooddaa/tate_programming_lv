@@ -51,6 +51,7 @@ defmodule HelpWeb.CompanyLive.Index do
 
   @impl true
   def handle_info({HelpWeb.CompanyLive.FormComponent, {:saved, company}}, socket) do
+    # https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#stream_insert/4
     {:noreply, stream_insert(socket, :companies, company)}
   end
 
